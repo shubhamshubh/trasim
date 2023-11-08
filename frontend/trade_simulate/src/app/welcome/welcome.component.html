@@ -1,0 +1,13 @@
+<h1>Welcome!</h1>
+<p> {{name}}</p>
+<a routerLink="/watchlist">WatchList</a>
+
+<div class="container">
+    Click here to get a customized welcome message
+    <button (click)="getWelcomeMessageWithParam()" class="btn btn-success">Click here</button>
+</div>
+
+<div class="container" *ngIf="messagefromservice">
+    Your Customized Message
+    {{messagefromservice}}
+</div>

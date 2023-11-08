@@ -1,0 +1,21 @@
+<h1>
+    Watchlist
+</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Company</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let stock of stocks">
+                <td>{{stock.symbol}}</td>
+                <td>{{stock.company}}</td>
+                <td>{{stock.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
