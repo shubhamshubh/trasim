@@ -19,15 +19,30 @@ export class stock {
 })
 export class WatchlistComponent {
 
+  delete_success_message = '';
   stocks: any;
   constructor (
     private watchlistService: WatchlistdataService
     ){}
   ngOnInit(){
+    this.refreshWatchList();
+  }
+
+  refreshWatchList(){
     this.watchlistService.retriveWatchlist("shubhamshubh").subscribe(
       response => {
         console.log(response);
         this.stocks = response;
+      }
+    )
+  }
+
+  deleteStock(symbol: String){
+    this.watchlistService.deleteStocks("shubhamshubh", symbol).subscribe(
+      response => {
+        console.log(response);
+        this.delete_success_message = `Successfully Deleted ${symbol} from watchlist`;
+        this.refreshWatchList();
       }
     )
   }

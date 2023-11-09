@@ -1,6 +1,8 @@
 <h1>
     Watchlist
 </h1>
+
+<div class="alert alert-success" *ngIf='delete_success_message'>{{ delete_success_message }}</div>
 <div class="container">
     <table class="table">
         <thead>
@@ -8,6 +10,7 @@
                 <th>Stock</th>
                 <th>Company</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +18,7 @@
                 <td>{{stock.symbol}}</td>
                 <td>{{stock.company}}</td>
                 <td>{{stock.price}}</td>
+                <td><button (click)="deleteStock(stock.symbol)" class="btn btn-warning">Delete</button></td>
             </tr>
         </tbody>
     </table>
