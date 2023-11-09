@@ -18,12 +18,14 @@ export class LoginComponent {
   }
 
   handleLogin() {
-    if(this.simpleauthenticationService.authenticate(this.username, this.password)){
-      this.router.navigate(['welcome', this.username])
-      this.invalidLogin = false
-    }
-    else{
-      this.invalidLogin = true
-    }
+    this.simpleauthenticationService.executeSimpleAuthenticationService(this.username, this.password).subscribe(
+      data => {
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin = false
+      },
+      error => {
+        this.invalidLogin = true
+      } 
+    )
   }
 }
