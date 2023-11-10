@@ -1,13 +1,16 @@
-<h1>Welcome!</h1>
-<p> {{name}}</p>
-<a routerLink="/watchlist">WatchList</a>
+<h1>Welcome {{name}}!</h1>
+<br>
+<br>
 
 <div class="container">
-    Click here to get a customized welcome message
-    <button (click)="getWelcomeMessageWithParam()" class="btn btn-success">Click here</button>
+    Go to <a routerLink="/watchlist">Trade Center</a>
+</div>
+<br>
+<div class="container">
+    Total Balance & today's P/L: 
+    <button (click)="getWelcomeMessageWithParam()" class="btn btn-success">Check</button>
 </div>
 
 <div class="container" *ngIf="messagefromservice">
-    Your Customized Message
-    {{messagefromservice}}
+    Your Customized Message {{messagefromservice}}
 </div>
