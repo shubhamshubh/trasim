@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SimpleauthenticationService } from '../service/simpleauthentication.service';
+import { WelcomedataService } from '../service/data/welcomedata.service';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,16 @@ export class LoginComponent {
   password = ''
   error_message = 'Invalid Credentials'
   invalidLogin = false
+  login = true;
+  signup = false;
 
   constructor(private router: Router,
-    public simpleauthenticationService: SimpleauthenticationService) {
+    public simpleauthenticationService: SimpleauthenticationService,
+    public balanceService: WelcomedataService) {
   }
 
   handleLogin() {
-    this.simpleauthenticationService.executeSimpleAuthenticationService(this.username, this.password).subscribe(
+    this.simpleauthenticationService.executeSimpleLoginService(this.username, this.password).subscribe(
       data => {
         this.router.navigate(['welcome', this.username])
         this.invalidLogin = false
@@ -27,5 +31,27 @@ export class LoginComponent {
         this.invalidLogin = true
       } 
     )
+  }
+
+  handleSignUp() {
+    this.simpleauthenticationService.executeSimpleSignUpService(this.username, this.password).subscribe(
+      data => {
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin = false
+      },
+      error => {
+        this.invalidLogin = true
+      } 
+    )
+    this.balanceService.initiateBalanceService(this.username).subscribe()
+  }
+  
+  switchToSignUp(){
+    this.login = false;
+    this.signup = true;
+  }
+  switchToLogin(){
+    this.login = true;
+    this.signup = false;
   }
 }

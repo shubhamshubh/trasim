@@ -8,9 +8,13 @@
 <br>
 <div class="container">
     Total Balance & today's P/L: 
-    <button (click)="getWelcomeMessageWithParam()" class="btn btn-success">Check</button>
 </div>
 
-<div class="container" *ngIf="messagefromservice">
-    Your Customized Message {{messagefromservice}}
+<div class="container">
+    <div class="container">
+        Balance: {{balance}}
+    </div>
+    <div class="container success">
+        P/L: {{pnl}}
+    </div>
 </div>

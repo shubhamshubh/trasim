@@ -18,6 +18,6 @@ export class WatchlistdataService {
   }
 
   deleteStocks(username: String, symbol: String){
-    return this.http.delete(`${API_URL}/${username}/watchlist/${symbol}`);
+    return this.http.delete(`${API_URL}/users/${username}/watchlist/${symbol}`);
   }
 }

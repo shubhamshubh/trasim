@@ -9,9 +9,10 @@ import { WelcomedataService } from '../service/data/welcomedata.service';
 })
 export class WelcomeComponent implements OnInit{
 
-  message = 'Some random message'
-  messagefromservice = ''
+  messagefromservice = 'Some random message'
   name = ''
+  balance = 0.0
+  pnl = 0.0
 
   constructor(private route:ActivatedRoute,
     public service:WelcomedataService) {
@@ -19,12 +20,14 @@ export class WelcomeComponent implements OnInit{
   }
 
   ngOnInit(){
-    console.log(this.message)
+
     this.name = this.route.snapshot.params['name']
+    this.getWelcomeMessageWithParam();
+
   }
 
   getWelcomeMessageWithParam(){
-    this.service.executeHelloWorldNameService(this.name).subscribe(
+    this.service.executeBalanceService(this.name).subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
@@ -32,8 +35,9 @@ export class WelcomeComponent implements OnInit{
   }
 
   handleSuccessfulResponse(response: any){
-
-    this.messagefromservice = response.message;
+    this.balance = response.balance
+    this.pnl = response.pnl
+    
   }
 
   handleErrorResponse(error: any){
