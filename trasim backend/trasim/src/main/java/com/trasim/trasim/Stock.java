@@ -5,14 +5,12 @@ import java.util.Objects;
 public class Stock {
 	public String symbol;
 	public String company;
-	public double price;
 	
 	
-	public Stock(String symbol, String company, double price) {
+	public Stock(String symbol, String company) {
 		super();
 		this.symbol = symbol;
 		this.company = company;
-		this.price = price;
 	}
 	public String getSymbol() {
 		return symbol;
@@ -25,12 +23,6 @@ public class Stock {
 	}
 	public void setCompany(String company) {
 		this.company = company;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
 	}
 	@Override
 	public int hashCode() {

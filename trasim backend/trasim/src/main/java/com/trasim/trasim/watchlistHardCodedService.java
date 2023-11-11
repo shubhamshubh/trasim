@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class watchlistHardCodedService {
 	
-	private static List<Stock> stocks = new ArrayList();
+	private static List<Stock> stocks = new ArrayList<Stock>();
 	
 	static {
-		stocks.add(new Stock("CSCO", "Cisco Systems", 54.67));
-		stocks.add(new Stock("TWLO", "Twilio", 68.21));
-		stocks.add(new Stock("MSFT", "Microsoft", 126.65));
-		stocks.add(new Stock("TATA", "Tata Ltd.", 554.45));
+		stocks.add(new Stock("CSCO", "Cisco Systems"));
+		stocks.add(new Stock("TWLO", "Twilio"));
+		stocks.add(new Stock("MSFT", "Microsoft"));
+		stocks.add(new Stock("TATA", "Tata Ltd."));
 	}
 	
 	public List<Stock> findAll(){

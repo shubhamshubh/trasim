@@ -1,0 +1,25 @@
+#list-container {
+    background-color: #f0f0f0;
+    width: 20%;
+    height: max-content;
+    padding: 30px;
+}
+
+#content-container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+button {
+    display: block;
+    margin-bottom: 10px;
+}
+body {
+    display: flex;
+    margin: 0;
+    height: 100vh;
+}
+
+#item-list{
+    list-style-type: none;
+}
