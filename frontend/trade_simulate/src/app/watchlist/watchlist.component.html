@@ -1,5 +1,4 @@
 <br>
-
 <h1>WatchList</h1>
 <br>
 <div class="form-group">
@@ -14,9 +13,32 @@
         <div class="alert alert-success" *ngIf='add_success_message'>{{ add_success_message }}</div>
         <ul id="item-list">
             <li *ngFor="let stock of watchListStocks">
-                <a (click)="displayStock(stock)" class="btn">{{stock}} </a>
-                
-                <a (click)="deleteStock(stock)" class="btn btn-warning btn-outline-primary btn-block col-xs-3 mr-1 btn-space">Delete </a><br>
+                <a (click)="displayStock(stock)" class="btn">{{stock}}
+                    <div class="popup-container">
+                        <a class="btn btn-success" (click)="toggleBuyPopup()">Buy</a>
+                        <div class="popup-content" id="buyPopup">
+                            <label for="field1">Current Price</label>
+                            <input type="text" id="CurrPriceBuy">
+                    
+                            <label for="field2">Quantity</label>
+                            <input type="text" id="buyQuantity" placeholder="Enter quantity">
+                    
+                            <button (click)="closeBuyPopup()">Buy</button>
+                        </div>
+                    </div>
+                    <div class="popup-container">
+                        <a class="btn btn-warning" (click)="toggleSellPopup()">Sell</a>
+                        <div class="popup-content" id="sellPopup">
+                            <label for="field1">Current Price</label>
+                            <input type="text" id="CurrPriceSell">
+                    
+                            <label for="field2">Quantity</label>
+                            <input type="text" id="sellQuantity" placeholder="Enter quantity">
+                    
+                            <button (click)="closeSellPopup()">Sell</button>
+                        </div>
+                    </div>
+                    <a (click)="deleteStock(stock)" class="btn btn-warning btn-outline-primary btn-block col-xs-3 mr-1 btn-space">Delete </a><br></a>
             </li>
         </ul>
     </div>

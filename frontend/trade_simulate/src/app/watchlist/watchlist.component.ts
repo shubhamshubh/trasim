@@ -136,6 +136,33 @@ export class WatchlistComponent {
       this.lineChartData[0].data.push(this.displayData.closing[i]);
     }
   }
+  toggleBuyPopup() {
+    this.closeSellPopup();
+    const popup = document.getElementById("buyPopup");
+    console.log("Yes");
+    if(popup!=null)
+      popup.style.display = (popup.style.display === "block") ? "none" : "block";
+  }
+
+  closeBuyPopup() {
+    let popup = document.getElementById("buyPopup");
+    if(popup!=null)
+      popup.style.display = "none";
+  }
+
+  toggleSellPopup() {
+    this.closeBuyPopup();
+    const popup = document.getElementById("sellPopup");
+    console.log("Yes");
+    if(popup!=null)
+      popup.style.display = (popup.style.display === "block") ? "none" : "block";
+  }
+
+  closeSellPopup() {
+    let popup = document.getElementById("sellPopup");
+    if(popup!=null)
+      popup.style.display = "none";
+  }
   //   new stock('CSCO', 'Cisco', 54.57),
   //   new stock('TWLO', 'Twilio', 68.56),
   //   new stock('MSFT', 'Microsoft', 127.80)
