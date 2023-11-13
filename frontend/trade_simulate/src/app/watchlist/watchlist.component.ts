@@ -179,6 +179,8 @@ export class WatchlistComponent {
     popup.style.display = "none";
     if(flag)
       return;
+    if(this.buyQuantity==0)
+      return;
     let username = this.authService.getAuthenticatedUser();
     if(username != null) {
       this.watchlistService.makeBuyTrade(username, symbol, this.stock_price, this.buyQuantity).subscribe(
@@ -212,6 +214,8 @@ export class WatchlistComponent {
     if(popup!=null)
       popup.style.display = "none";
     if(flag)
+      return;
+    if(this.sellQuantity==0)
       return;
     let username = this.authService.getAuthenticatedUser();
     if(username != null) {

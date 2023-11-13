@@ -17,6 +17,7 @@
                     <div class="popup-container">
                         <a class="btn btn-success" (click)="toggleBuyPopup(stock)">Buy</a>
                         <div class="popup-content" id="buyPopup{{stock}}">
+                            <button (click)="closeBuyPopup(stock, 1)" class="close-button">&times;</button>
                             <label for="CurrPriceBuy" >Current Price</label>
                             <input type="text" id="CurrPriceBuy" placeholder={{stock_price}} readonly>
                     
@@ -29,6 +30,7 @@
                     <div class="popup-container">
                         <a class="btn btn-warning" (click)="toggleSellPopup(stock)">Sell</a>
                         <div class="popup-content" id="sellPopup{{stock}}">
+                            <button (click)="closeSellPopup(stock, 1)" class="close-button">&times;</button>
                             <label for="CurrPriceSell">Current Price</label>
                             <input type="text" id="CurrPriceSell" placeholder={{stock_price}} readonly>
                             <label for="sellQuantity">Quantity</label>
