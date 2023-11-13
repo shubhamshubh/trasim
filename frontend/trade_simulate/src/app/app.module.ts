@@ -14,6 +14,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 import { NgChartsModule } from 'ng2-charts';
+import { PositionsComponent } from './positions/positions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgChartsModule } from 'ng2-charts';
     WatchlistComponent,
     MenuComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    PositionsComponent
   ],
   imports: [
     BrowserModule,

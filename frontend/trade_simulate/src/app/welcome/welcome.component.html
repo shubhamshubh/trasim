@@ -17,7 +17,8 @@
     <div class="container">
         Balance: {{balance}}
     </div>
-    <div class="container success" *ngIf="pnl">
-        P/L: {{pnl}}
+    <div class="container success" [ngClass]="{'positive': pnl >= 0, 'negative': pnl < 0}">
+        P/L: <a *ngIf="pnl">+</a>
+        <a *ngIf="!pnl">-</a>{{pnl}}
     </div>
 </div>

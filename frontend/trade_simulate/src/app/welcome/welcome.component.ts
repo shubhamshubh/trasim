@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WelcomedataService } from '../service/data/welcomedata.service';
 import { WatchlistdataService } from '../service/data/watchlistdata.service';
+import { SimpleauthenticationService } from '../service/simpleauthentication.service';
 
 @Component({
   selector: 'app-welcome',
@@ -12,20 +13,23 @@ export class WelcomeComponent implements OnInit{
 
   messagefromservice = 'Some random message'
   name = ''
-  balance = 0.0
-  pnl = 0.0
+  balance: number = 0.0
+  pnl:number = 0.0
   trades: any = [];
 
   constructor(private route:ActivatedRoute,
     public service:WelcomedataService,
-    public tradesservice: WatchlistdataService) {
+    public tradesservice: WatchlistdataService,
+    public authService: SimpleauthenticationService) {
 
   }
 
   ngOnInit(){
-
-    this.name = this.route.snapshot.params['name']
+    let username = this.authService.getAuthenticatedUser();
+    if(username !=null)
+      this.name = username;
     this.getAllTrades(this.name);
+    this.getWelcomeMessageWithParam();
   }
 
   getWelcomeMessageWithParam(){
@@ -38,7 +42,6 @@ export class WelcomeComponent implements OnInit{
 
   handleSuccessfulResponse(response: any){
     this.balance = response.balance.toFixed(2);
-    this.pnl = response.pnl.toFixed(2);
     
   }
 
@@ -63,11 +66,11 @@ export class WelcomeComponent implements OnInit{
       this.tradesservice.getStockPrice(trades[i].symbol).subscribe(
         response => {
           console.log(this.pnl);
-          this.pnl = this.pnl + (response["data"]["current_price"]-trades[i].price)*trades[i].quantity;
+          this.pnl = this.pnl + (Number(response["data"]["current_price"])-trades[i].price)*trades[i].quantity;
+          this.pnl = Number(this.pnl.toFixed(2));
           console.log(this.pnl);
         }
       )
     }
-    this.getWelcomeMessageWithParam();
   }
 }

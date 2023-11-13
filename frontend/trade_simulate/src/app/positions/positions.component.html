@@ -1,0 +1,30 @@
+<br>
+<br>
+<h1>
+    Positions
+</h1>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Average Buy Price</th>
+                <th>Current Price</th>
+                <th>Quantity</th>
+                <th>Current P/L</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trade of currTrades">
+                <td>{{trade.symbol}}</td>
+                <td>{{trade.buyPrice}}</td>
+                <td>{{trade.currPrice}}</td>
+                <td>{{trade.quantity}}</td>
+                <td [ngClass]="{'positive': trade.pnl >= 0, 'negative': trade.pnl < 0}"><a *ngIf="trade.pnl">+</a>
+                    <a *ngIf="!trade.pnl">+</a>{{trade.pnl}}</td>
+                <!-- <td><button (click)="deleteStock(stock.symbol)" class="btn btn-warning">Delete</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
