@@ -62,7 +62,10 @@ export class WatchlistdataService {
   }
 
   getStockData(symbol: String){
-    return this.http.get<stockdata>(`https://priceapi.moneycontrol.com/globaltechCharts/usMarket/stock/history?symbol=${symbol}%3AUS&resolution=5&from=1699406014&to=1699693375&countback=300&currencyCode=USD`);
+    let currTime = Date.now();
+    currTime = Math. trunc(currTime/1000);
+    let startTime = currTime - 300000;
+    return this.http.get<stockdata>(`https://priceapi.moneycontrol.com/globaltechCharts/usMarket/stock/history?symbol=${symbol}%3AUS&resolution=5&from=${startTime}&to=${currTime}&countback=300&currencyCode=USD`);
   }
 
 

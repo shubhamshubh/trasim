@@ -3,14 +3,18 @@
 <br>
 <div class="form-group">
     <label for="NewStock">Add a new Stock to your watchlist!</label>
-    <input type="text" class="form-control" name="newStock" [(ngModel)] = "newStock" (keyup.enter)="addStock(newStock)">
+    <input type="text" class="form-control" name="newStock" [(ngModel)] = "newStock" (keyup.enter)="verifyStock(newStock)">
 </div>
-<body>
+<body (click)="closeMessage()">
     <!-- Sidebar -->
     
     <div id="list-container">
-        <div class="alert alert-success" *ngIf='message'>{{ message }}</div>
-        <div class="alert alert-failure" *ngIf='fail_message'>{{ fail_message }}</div>
+        <div class="alert alert-success" *ngIf='message'>
+            <a (click)="closeMessage()" class="btn alert-failure text-right">&times;</a><br>{{ message }}
+        </div>
+        <div class="alert alert-danger" *ngIf='fail_message'>
+            <a (click)="closeMessage()" class="btn alert-failure text-right">&times;</a><br>{{ fail_message }}
+        </div>
         <ul id="item-list">
             <li *ngFor="let stock of watchListStocks">
                 <a (click)="displayStock(stock)" class="btn">{{stock}}

@@ -73,6 +73,12 @@ export class WatchlistComponent {
     this.refreshWatchList();
   }
 
+
+  closeMessage(){
+    this.message = '';
+    this.fail_message = '';
+  }
+  
   refreshWatchList(){
     let username = this.authService.getAuthenticatedUser();
     this.stocks = []
@@ -98,6 +104,20 @@ export class WatchlistComponent {
         }
       )
     }
+  }
+
+  verifyStock(symbol:string){
+    this.watchlistService.getStockData(symbol).subscribe(
+      response => {
+        if(response.s == "error"){
+          this.fail_message = 'Not a valid Stock';
+          this.message = '';
+        }
+        else{
+          this.addStock(symbol)
+        }
+      }
+    )
   }
 
   addStock(symbol: string){

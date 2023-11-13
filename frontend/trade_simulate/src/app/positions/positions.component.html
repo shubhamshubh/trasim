@@ -21,8 +21,7 @@
                 <td>{{trade.buyPrice}}</td>
                 <td>{{trade.currPrice}}</td>
                 <td>{{trade.quantity}}</td>
-                <td [ngClass]="{'positive': trade.pnl >= 0, 'negative': trade.pnl < 0}"><a *ngIf="trade.pnl">+</a>
-                    <a *ngIf="!trade.pnl">+</a>{{trade.pnl}}</td>
+                <td [ngClass]="{'positive': trade.pnl >= 0, 'negative': trade.pnl < 0}"><a *ngIf="trade.pnl>=0">+</a>{{trade.pnl}}</td>
                 <!-- <td><button (click)="deleteStock(stock.symbol)" class="btn btn-warning">Delete</button></td> -->
             </tr>
         </tbody>

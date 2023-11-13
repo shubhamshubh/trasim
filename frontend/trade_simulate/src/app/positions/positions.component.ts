@@ -32,11 +32,58 @@ export class PositionsComponent implements OnInit {
   stocks: number[] = [];
   trades: any[] = [];
   currTrades: Trades[] = [];
+  currPNL: Map<string, number> = {
+    clear: function (): void {
+      throw new Error('Function not implemented.');
+    },
+    delete: function (key: string): boolean {
+      throw new Error('Function not implemented.');
+    },
+    forEach: function (callbackfn: (value: number, key: string, map: Map<string, number>) => void, thisArg?: any): void {
+      throw new Error('Function not implemented.');
+    },
+    get: function (key: string): number | undefined {
+      throw new Error('Function not implemented.');
+    },
+    has: function (key: string): boolean {
+      throw new Error('Function not implemented.');
+    },
+    set: function (key: string, value: number): Map<string, number> {
+      throw new Error('Function not implemented.');
+    },
+    size: 0,
+    entries: function (): IterableIterator<[string, number]> {
+      throw new Error('Function not implemented.');
+    },
+    keys: function (): IterableIterator<string> {
+      throw new Error('Function not implemented.');
+    },
+    values: function (): IterableIterator<number> {
+      throw new Error('Function not implemented.');
+    },
+    [Symbol.iterator]: function (): IterableIterator<[string, number]> {
+      throw new Error('Function not implemented.');
+    },
+    [Symbol.toStringTag]: ''
+  };
 
   ngOnInit(){
+
     this.getPositions();
+    setInterval(()=> {
+      this.preparePositions();
+      this.currTrades.sort((a, b) => a.symbol.localeCompare(b.symbol));
+    }, 5000);
+    // for(let i =0;;){
+      // this.getPositions();
+    //   this.delay(50000);
+    // }
+
   }
 
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+  }
   getPositions(){
     let username = this.authService.getAuthenticatedUser();
     console.log(username);
@@ -52,12 +99,14 @@ export class PositionsComponent implements OnInit {
   }
 
   preparePositions(){
+    this.currTrades = []
+    console.log(this.trades);
     for(let i = 0;i<this.trades.length;i++){
       this.tradesservice.getStockPrice(this.trades[i].symbol).subscribe(
         response => {
           let pnl = (Number(response["data"]["current_price"])-this.trades[i].price)*this.trades[i].quantity
           this.currTrades.push(new Trades(this.trades[i].symbol, 
-                                          this.trades[i].price, 
+                                          this.trades[i].price.toFixed(2), 
                                           Number(response["data"]["current_price"]),
                                           this.trades[i].quantity,
                                           Number(pnl.toFixed(2))));
