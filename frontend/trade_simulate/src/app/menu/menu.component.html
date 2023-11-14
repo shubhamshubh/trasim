@@ -5,7 +5,7 @@
         </div>
         <ul class="navbar-nav">
             <li>
-                <a *ngIf="simpleautheticationService.isUserLoggedIn()" routerLink="/welcome/shubhamshubh" class="nav-link">Home</a></li>
+                <a *ngIf="simpleautheticationService.isUserLoggedIn()" routerLink="/welcome/{{user}}" class="nav-link">Home</a></li>
             <li><a *ngIf="simpleautheticationService.isUserLoggedIn()" routerLink="/watchlist" class="nav-link">WatchList</a></li>
             <li><a *ngIf="simpleautheticationService.isUserLoggedIn()" routerLink="/positions" class="nav-link">Positions</a></li>
             

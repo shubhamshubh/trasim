@@ -65,7 +65,7 @@ export class WatchlistdataService {
     let currTime = Date.now();
     currTime = Math. trunc(currTime/1000);
     let startTime = currTime - 300000;
-    return this.http.get<stockdata>(`https://priceapi.moneycontrol.com/globaltechCharts/usMarket/stock/history?symbol=${symbol}%3AUS&resolution=5&from=${startTime}&to=${currTime}&countback=300&currencyCode=USD`);
+    return this.http.get<stockdata>(`https://priceapi.moneycontrol.com/globaltechCharts/usMarket/stock/history?symbol=${symbol}%3AUS&resolution=5&from=${startTime}&to=${currTime}&countback=200&currencyCode=USD`);
   }
 
 

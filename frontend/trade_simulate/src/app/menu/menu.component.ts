@@ -12,7 +12,9 @@ export class MenuComponent {
 
   }
 
+  user = sessionStorage.getItem('authenticateUser');
   ngOnInit() {
+    
     this.isUserLoggedIn = this.simpleautheticationService.isUserLoggedIn();
   }
 }

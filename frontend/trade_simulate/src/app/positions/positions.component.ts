@@ -32,6 +32,7 @@ export class PositionsComponent implements OnInit {
   stocks: number[] = [];
   trades: any[] = [];
   currTrades: Trades[] = [];
+  showTrades: Trades[] = [];
   currPNL: Map<string, number> = {
     clear: function (): void {
       throw new Error('Function not implemented.');
@@ -72,8 +73,10 @@ export class PositionsComponent implements OnInit {
     this.getPositions();
     setInterval(()=> {
       this.preparePositions();
-      this.currTrades.sort((a, b) => a.symbol.localeCompare(b.symbol));
     }, 5000);
+    setInterval(()=> {
+      this.currTrades.sort((a, b) => a.symbol.localeCompare(b.symbol));
+    }, 10);
     // for(let i =0;;){
       // this.getPositions();
     //   this.delay(50000);
@@ -99,6 +102,7 @@ export class PositionsComponent implements OnInit {
   }
 
   preparePositions(){
+    this.trades.sort((a, b) => a.symbol.localeCompare(b.symbol));
     this.currTrades = []
     console.log(this.trades);
     for(let i = 0;i<this.trades.length;i++){
@@ -110,6 +114,29 @@ export class PositionsComponent implements OnInit {
                                           Number(response["data"]["current_price"]),
                                           this.trades[i].quantity,
                                           Number(pnl.toFixed(2))));
+        }
+      )
+    }
+  }
+
+  
+  updatePositions(){
+    console.log(this.trades);
+    for(let i = 0;i<this.trades.length;i++){
+      this.tradesservice.getStockPrice(this.trades[i].symbol).subscribe(
+        response => {
+          let pnl = (Number(response["data"]["current_price"])-this.trades[i].price)*this.trades[i].quantity
+          let price = Number(response["data"]["current_price"]);
+          for(let j = 0;j<this.currTrades.length;j++)
+          {
+              if(this.currTrades[j].symbol == response["data"]["symbol"])
+              {
+                this.currTrades[j].pnl = Number(pnl.toFixed(2));
+                this.currTrades[j].currPrice = price;
+                break;
+              }
+          }
+          
         }
       )
     }
